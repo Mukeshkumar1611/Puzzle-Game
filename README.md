@@ -5,7 +5,10 @@
 Puzzle Solver is a web-based sliding puzzle game implemented using HTML, CSS, and JavaScript. The game challenges players to solve the puzzle by rearranging tiles to form a complete image.
 
 
-https://github.com/Mukeshkumar1611/Puzzle-Game/assets/98644411/0e792fd1-137a-42a7-a512-7978267d3814
+
+https://github.com/Mukeshkumar1611/Puzzle-Game/assets/98644411/9202aefe-7eee-4538-994d-d4bd11aa06d7
+
+
 
 
 
