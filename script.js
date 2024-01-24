@@ -1,73 +1,39 @@
-var MovesCount = 0
+document.getElementById("getCustomPicture").addEventListener("click", function () {
+    const fileInput = document.getElementById("file-input");
+    const selectedFile = fileInput.files[0];
 
-if (sessionStorage.getItem("image")) {
+    console.log(selectedFile);
 
-    const blobDataUrl = sessionStorage.getItem("image");
-    const tile = document.getElementsByClassName("tile");
-
-    // Create an image element and set its source to the data URL
-    const img = new Image();
-    img.src = blobDataUrl;
-
-    // img is loaded in img var
-    
-    img.onload = function () {
-        for (let i = 0; i < tile.length; i++) {
-            tile[i].style.backgroundImage = `url(${img.src})`;
-        }
-    };
-
-    sessionStorage.clear();
-}
-
-function playAgain() {
-    sessionStorage.clear();
-    window.location.href = "start.html";
-}
-
-// Generate random positions for puzzle
-function randomPos() {
-    var arr = [];
-    while (arr.length < 9) {
-        var r = ((Math.floor(Math.random() * 3) + 1).toString()) +
-            ((Math.floor(Math.random() * 3) + 1).toString());
-        if (arr.indexOf(r) === -1) arr.push(r);
+    if (!selectedFile) 
+    {
+        alert("No file selected. Please choose a picture.");
+    } 
+    else if (!selectedFile.type.startsWith("image/")) 
+    {
+        alert("The selected file is not a picture. Please choose an image file.");
     }
-    return arr
-}
+    else 
+    {
+        const blob = new Blob([selectedFile], { type: selectedFile.type });
 
-var RandomPos = randomPos();
+        // Convert the Blob to a Base64 string
+        const reader = new FileReader();
+        reader.onload = function () {
+            const base64String = reader.result;
 
-// Placing All pieces at random positions 
-for (let i = 0; i < document.getElementsByClassName("tile").length; i++) {
-    document.getElementsByClassName("tile")[i].style.gridArea = RandomPos[i][0] + "/" + RandomPos[i][1]
-}
+                // Store the Base64 string in sessionStorage
+            sessionStorage.setItem("image", base64String);
 
-
-// Checking all the possible 4 direction, 
-function MoveMe(tile) {
-    var EmptyTile = document.querySelector(".emtile")
-    var Possibilties = [
-        parseInt(RandomPos[tile][0]) + 1 == parseInt(RandomPos[8][0]) && parseInt(RandomPos[tile][1]) == parseInt(RandomPos[8][1]),
-        parseInt(RandomPos[tile][0]) - 1 == parseInt(RandomPos[8][0]) && parseInt(RandomPos[tile][1]) == parseInt(RandomPos[8][1]),
-        parseInt(RandomPos[tile][1]) + 1 == parseInt(RandomPos[8][1]) && parseInt(RandomPos[tile][0]) == parseInt(RandomPos[8][0]),
-        parseInt(RandomPos[tile][1]) - 1 == parseInt(RandomPos[8][1]) && parseInt(RandomPos[tile][0]) == parseInt(RandomPos[8][0]),
-    ]
-
-    // if in any direction it finds empty move the tile to that direcgtion
-    if (Possibilties[0] || Possibilties[1] || Possibilties[2] || Possibilties[3]) {
-        MovesCount++;
-        EmptyTile.style.gridArea = RandomPos[tile][0] + "/" + RandomPos[tile][1];
-        document.querySelectorAll(".tile")[tile].style.gridArea = RandomPos[8][0] + "/" + RandomPos[8][1];
-
-        var CurrentTile = RandomPos[tile]
-        RandomPos[tile] = RandomPos[8]
-        RandomPos[8] = CurrentTile;
-        NeededPos = ["11", "12", "13", "21", "22", "23", "31", "32", "33"]
-        if (RandomPos.join(".") == NeededPos.join(".")) {
-            console.log("Game Beated");
-            document.querySelector(".blscreen").style.display = 'flex';
-            document.querySelector(".MovesCount").innerHTML = MovesCount;
-        }
+                // Redirect to "index.html" or perform any other action
+            window.location.href = "game.html";
+        };
+        
+        reader.readAsDataURL(blob);
     }
-}
+});
+
+// Function to handle redirect to a page with a random picture
+document.getElementById("getRandomPicture").addEventListener("click", function () {
+    // Redirect to a page that displays a random image
+    window.location.href = "game.html";
+});
