@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #212529;
+    display: flex;
+}
+
+.main-div{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+}
+
+h1{
+    font-size: 5rem;
+    color: white;
+    line-height: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    transform: rotate(-45deg);
+}
+
+.file-input{
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+}
+
+.random-btn{
+    background-color: #212529;
+    color: white;
+    font-size: 2rem;
+    border: 2px solid white;
+    padding: .5rem 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.random-btn:hover{
+    background-color: white;
+    color: #212529;
+    border: 2px solid white;
+    outline: 4px solid #212529;
+}
