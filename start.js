@@ -19,14 +19,15 @@ document.getElementById("getCustomPicture").addEventListener("click", function (
         // Convert the Blob to a Base64 string
         const reader = new FileReader();
         reader.onload = function () {
-        const base64String = reader.result;
+            const base64String = reader.result;
 
-            // Store the Base64 string in sessionStorage
-        sessionStorage.setItem("image", base64String);
+                // Store the Base64 string in sessionStorage
+            sessionStorage.setItem("image", base64String);
 
-            // Redirect to "index.html" or perform any other action
-        window.location.href = "gamePage.html";
+                // Redirect to "index.html" or perform any other action
+            window.location.href = "gamePage.html";
         };
+        
         reader.readAsDataURL(blob);
     }
 });
